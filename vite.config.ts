@@ -3,8 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { fileURLToPath } from 'url';
 
-// https://vite.dev/config/
 export default defineConfig({
+  base: '/green-api-test/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
