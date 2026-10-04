@@ -1,75 +1,69 @@
-# React + TypeScript + Vite
+# GREEN-API WhatsApp Chat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Простой одностраничный чат на React с интеграцией GREEN-API.
 
-Currently, two official plugins are available:
+Приложение позволяет:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- авторизоваться через GREEN-API
+- подключить WhatsApp через QR-код
+- выбрать номер абонента
+- загрузить историю сообщений
+- отправлять сообщения
+- получать новые сообщения
 
-## React Compiler
+## Стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Zustand
+- TanStack Query
+- React Hook Form
+- GREEN-API
 
-## Expanding the ESLint configuration
+## Требования
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Для запуска проекта необходимы:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 22+
+- npm
+- аккаунт GREEN-API
+- созданный instance
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Установка и запуск
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/zainkovskiy/green-api-test.git
+cd green-api-test
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+После запуска Vite покажет адрес приложения:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+http://localhost:5173
 ```
+
+## Использование
+
+1. Введите `idInstance`.
+2. Введите `apiTokenInstance`.
+3. Нажмите **Продолжить**.
+4. Если instance не авторизован, отсканируйте QR-код через WhatsApp.
+5. После успешной авторизации введите номер абонента.
+6. После этого откроется чат с выбранным пользователем.
+
+## GREEN-API
+
+Для работы приложения необходимы:
+
+```text
+idInstance
+apiTokenInstance
+```
+
+Их можно получить в личном кабинете GREEN-API после создания instance.
+
+Instance должен быть авторизован в WhatsApp.

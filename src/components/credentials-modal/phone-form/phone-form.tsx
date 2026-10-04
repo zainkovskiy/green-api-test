@@ -33,6 +33,7 @@ const PhoneForm = () => {
               },
             })}
             isError={Boolean(errors.phone?.message)}
+            placeholder='7XXXXXXXXXX'
           />
           <span className='block h-[15px] text-red-500 text-xs'>
             {errors.phone?.message}
