@@ -10,12 +10,19 @@ interface CredentialsFieldsProps {
 }
 
 const CredentialsFields = ({ isStateLoading }: CredentialsFieldsProps) => {
-  const { setCredentials } = useGlobalStore((store) => store);
+  const { idInstance, apiTokenInstance, setCredentials } = useGlobalStore(
+    (store) => store,
+  );
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Credentials>();
+  } = useForm<Credentials>({
+    defaultValues: {
+      idInstance: idInstance ?? '',
+      apiTokenInstance: apiTokenInstance ?? '',
+    },
+  });
 
   const onSubmit: SubmitHandler<Credentials> = async (data) => {
     setCredentials(data);
