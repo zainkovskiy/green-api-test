@@ -1,5 +1,5 @@
 import MessagesContainer from '../messages-container/messages-container';
-import MessageField from '../ui/message-filed/message-filed';
+import MessageField from '../ui/message-field/message-field';
 
 const ChatContainer = () => {
   return (

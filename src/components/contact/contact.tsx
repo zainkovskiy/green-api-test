@@ -11,11 +11,7 @@ const Contact = ({ contact }: ContactInfoProps) => {
     <div className='bg-primary flex items-center p-4 gap-4 h-[72px] shrink-0'>
       {contact && (
         <>
-          <img
-            src={avatar}
-            alt='avatar'
-            className='w-10 h-10 rounded-[999px]'
-          />
+          <img src={avatar} alt='avatar' className='w-10 h-10 rounded-full' />
           {displayName}
         </>
       )}

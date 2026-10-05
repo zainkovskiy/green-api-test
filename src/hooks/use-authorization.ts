@@ -58,6 +58,8 @@ export const useAuthorization = () => {
     hasCredentials,
     isStateLoading: stateQuery.isLoading,
     isQrLoading: qrQuery.isLoading,
-    isError: stateQuery.isError || qrQuery.isError,
+    isErrorState: stateQuery.isError,
+    isErrorQr: qrQuery.isError,
+    refetchQr: qrQuery.refetch,
   };
 };

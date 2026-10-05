@@ -7,12 +7,12 @@ const CredentialsModal = () => {
 
   if (isAuthorized && phone) return null;
 
-  const ContexComponent = isAuthorized ? PhoneForm : CredentialsForm;
+  const ContentComponent = isAuthorized ? PhoneForm : CredentialsForm;
 
   return (
     <div className='absolute bg-[#2264637d] flex justify-center items-center w-full h-full'>
       <div className='bg-primary border-1 border-on-primary h-[500px] w-[400px] rounded-md flex'>
-        <ContexComponent />
+        <ContentComponent />
       </div>
     </div>
   );

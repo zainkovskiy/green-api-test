@@ -70,10 +70,12 @@ export const getChatHistory = async ({
 
   const messages: ChatMessage[] = await response.json();
 
-  return messages.map((message) => ({
-    ...message,
-    textMessage: message.textMessage ?? message.extendedTextMessageData?.text,
-  }));
+  return messages
+    .map((message) => ({
+      ...message,
+      textMessage: message.textMessage ?? message.extendedTextMessageData?.text,
+    }))
+    .filter((message) => Boolean(message.textMessage));
 };
 
 export const getContactInfo = async ({

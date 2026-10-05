@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import {
@@ -28,6 +28,7 @@ export const useChat = () => {
         phone: phone!,
       }),
     enabled: hasChatData,
+    staleTime: Infinity,
   });
 
   const contactQuery = useQuery({
@@ -60,6 +61,9 @@ export const useChat = () => {
           }
 
           const { receiptId, body } = notification;
+          const currentChatId = `${phone}@c.us`;
+
+          const isCurrentChat = body.senderData?.chatId === currentChatId;
 
           const isIncoming = body.typeWebhook === 'incomingMessageReceived';
 
@@ -71,7 +75,7 @@ export const useChat = () => {
             body.messageData?.textMessageData?.textMessage ??
             body.messageData?.extendedTextMessageData?.text;
 
-          if ((isIncoming || isOutgoing) && textMessage) {
+          if (isCurrentChat && (isIncoming || isOutgoing) && textMessage) {
             const message: ChatMessage = {
               type: isIncoming ? 'incoming' : 'outgoing',
               idMessage: body.idMessage,
@@ -104,7 +108,7 @@ export const useChat = () => {
           });
         } catch (error) {
           console.error(error);
-          break;
+          await new Promise((resolve) => setTimeout(resolve, 2000));
         }
       }
     };
@@ -116,8 +120,13 @@ export const useChat = () => {
     };
   }, [hasChatData, idInstance, apiTokenInstance, phone, queryClient]);
 
+  const messages = useMemo(
+    () => historyQuery.data?.toReversed() ?? [],
+    [historyQuery.data],
+  );
+
   return {
-    messages: historyQuery.data?.toReversed() ?? [],
+    messages: messages,
     contact: contactQuery.data,
     isLoadingHistory: historyQuery.isLoading,
     isLoadingContact: contactQuery.isLoading,

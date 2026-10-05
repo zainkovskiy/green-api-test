@@ -12,6 +12,7 @@ export type GlobalActions = {
   setCredentials: (credentials: Credentials) => void;
   setPhone: (phone: string) => void;
   setAuthorized: () => void;
+  resetCredentials: () => void;
 };
 
 export type GlobalStore = GlobalState & GlobalActions;
@@ -29,5 +30,12 @@ export const createGlobalStore = () => {
       }),
     setPhone: (phone) => set({ phone: phone }),
     setAuthorized: () => set({ isAuthorized: true }),
+    resetCredentials: () =>
+      set({
+        idInstance: null,
+        apiTokenInstance: null,
+        isAuthorized: false,
+        phone: null,
+      }),
   }));
 };

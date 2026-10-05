@@ -31,9 +31,6 @@ const MessageField = () => {
         phone,
         message: value,
       });
-    } catch (error) {
-      console.error('error:', error);
-    } finally {
       setValue('');
 
       requestAnimationFrame(() => {
@@ -41,6 +38,8 @@ const MessageField = () => {
           textareaRef.current.style.height = 'auto';
         }
       });
+    } catch (error) {
+      console.error('error:', error);
     }
   };
 

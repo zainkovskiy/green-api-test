@@ -11,6 +11,10 @@
 - отправлять сообщения
 - получать новые сообщения
 
+## Demo
+
+https://zainkovskiy.github.io/green-api-test/
+
 ## Стек
 
 - React
