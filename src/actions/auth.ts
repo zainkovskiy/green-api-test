@@ -28,9 +28,13 @@ export const getQrCode = async ({
   const response = await fetch(
     buildUrl(idInstance, apiTokenInstance, AUTH_ACTIONS.QR),
   );
-
+  const data = await response.json();
   if (!response.ok) {
     throw new Error(`error: ${response.status}`);
+  }
+
+  if (data?.type === 'error') {
+    throw new Error(data.message);
   }
 
   return response.json();

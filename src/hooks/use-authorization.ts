@@ -26,7 +26,7 @@ export const useAuthorization = () => {
       }
 
       if (state === 'notAuthorized' || state === 'starting') {
-        return 2000;
+        return 5000;
       }
 
       return false;
